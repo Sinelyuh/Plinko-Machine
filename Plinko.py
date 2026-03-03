@@ -1,6 +1,8 @@
 #Importing random
 import random
 
+print("Hi Sinelya")
+
 #Initialising variables
 rows = 16
 money = 500
