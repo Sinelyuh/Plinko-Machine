@@ -1,22 +1,25 @@
 #Importing random
 import random
 
-print("Hi Sinelya")
-
 #Initialising variables
-rows = 16
+rows = int(input('Enter the amount of rows (8/12/16):'))
 money = 500
-bet = 100
+bet = int(input('How much do you want each bet to be (no more than 500):'))
 
-# 16 multipliers 
-slots = [10, 5, 3, 2, 1, 0.5, 0.3,0,0,0.3, 0.5, 1, 2, 3, 5, 10]
-
+# 8/12/16 multipliers
+slots=[]
+if rows==8:
+    slots=[13,3,1.3,0.7,0.4,0.7,1.3,3,13]
+elif rows==12:
+    slots=[33,11,4,2,1.1,0.6,0.3,0.6,1.1,2,4,11,33]
+else:
+    slots = [110,41,10,5,3,1.5,1,0.5,0.3,0.5,1,1.5,3,5,10,41,110]
 
 #Starting the game
 while True:
 
     print("You have $",money)
-    choice = input("Drop a ball for $100? (yes/no): ")
+    choice = input('Drop a ball? (yes/no):')
 
     #If the user says no the loop breaks
     if choice == "no":
@@ -45,7 +48,7 @@ while True:
             else:
                 print("* ", end="")
         print()
-
+                            print(slots)
         #Move left or right
         move = random.choice([0, 1])
         position = position + move
