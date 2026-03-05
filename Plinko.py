@@ -3,8 +3,13 @@ import random
 
 #Initialising variables
 rows = int(input('Enter the amount of rows (8/12/16):'))
+while rows!=8 and rows!=12 and rows!=16:
+    rows = int(input('Enter the amount of rows (8/12/16):'))
 money = 500
 bet = int(input('How much do you want each bet to be (no more than 500):'))
+while bet>500:
+    bet = int(input('How much do you want each bet to be (no more than 500):'))
+    
 
 # 8/12/16 multipliers
 slots=[]
@@ -41,14 +46,14 @@ while True:
         #Spacing for the pyramid
         print(" " * (rows - row), end="")
 
-            #To get the indextes
+            #To get the indexes
         for i in range(row + 1):
             if i == position:
                 print("✪ ", end="")
             else:
                 print("* ", end="")
         print()
-                            print(slots)
+
         #Move left or right
         move = random.choice([0, 1])
         position = position + move
