@@ -4,13 +4,34 @@ import random
 #Initialising the variables
 money=500
 
-def getting_bet():
-    '''Getting the bet amount from the user'''
-    bet=int(input('How much do you want each bet to be (no more than 500):'))
-    while bet>money:
-        bet=int(input('How much do you want each bet to be (no more than 500):'))
-    return bet
-   
+def getting_bet(money):
+    while True:
+        try:
+            bet = int(input('Enter your bet (max 500): '))
+            
+            if bet > 500 or bet > money:
+                print("Bet is too high!")
+            elif bet <= 0:
+                print("Bet must be greater than 0.")
+            else:
+                return bet  
+        except:
+            print("Please enter a valid number.")
+
+def getting_row():
+    ''' Getting the row number from the user'''
+    while True:
+        try:
+            row = int(input('Enter the amount of rows (8/12/16):'))
+            if row != 8 and row != 12 and row!=16:
+                print("Enter 8,12 or 16 please.")
+            else:
+                break       # Only break once int entered
+        except:
+            print("Enter a real number.")
+    return row    
+        
+
 
 #Function for the 8/12/16 multipliers
 def slots(rows):
@@ -62,13 +83,13 @@ def loop_through_rows(row,position,active_slots):
 if __name__=='__main__':
     
     #Getting the rows
-    row = int(input('Enter the amount of rows (8/12/16):'))
-    while row not in [8, 12, 16]:
-        row = int(input('Enter the amount of rows (8/12/16):'))
-    active_slots =slots(row)
-
+    user_row=getting_row()
+    
     #Getting bet
-    user_bet=getting_bet()
+    user_bet=getting_bet(money)
+    
+    #Getting the multipliers
+    active_slots =slots(user_row)
 
         #Starting the game
     while True:
@@ -91,7 +112,7 @@ if __name__=='__main__':
         position=0
 
         #To loop through the rows (function)
-        multiplier, position = loop_through_rows(row, position, active_slots)
+        multiplier, position = loop_through_rows(user_row, position, active_slots)
         
     #Printing the winning and losses
         print("Landed in slot",position)
